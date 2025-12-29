@@ -1,2 +1,0 @@
-print("Hello Nikita")
-dzczczx
