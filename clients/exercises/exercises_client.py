@@ -22,7 +22,7 @@ class GetExercisesResponseDict(TypedDict):
     """
     Описание структуры ответа получения задания с Query
     """
-    exercises: Exercise
+    exercises: list[Exercise]
 
 class GetExerciseResponseDict(TypedDict):
     """
