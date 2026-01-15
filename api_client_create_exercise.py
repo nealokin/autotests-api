@@ -6,7 +6,7 @@ from clients.users.public_users_client import get_public_users_client, CreateUse
 from tools.fakers import get_random_email
 
 public_users_client = get_public_users_client()
-
+#Создание пользователя
 create_user_request = CreateUserRequestDict(
     email= get_random_email(),
     password="string",
@@ -16,14 +16,17 @@ create_user_request = CreateUserRequestDict(
 )
 create_user_response = public_users_client.create_user(create_user_request)
 
+#Авторизация пользователя
 authentication_user = AuthenticationUserDict(
     email=create_user_request['email'],
     password=create_user_request['password']
 )
+#Подключение клиентов
 file_client = get_files_client(authentication_user)
 course_client = get_courses_client(authentication_user)
 exercises_client = get_exercises_client(authentication_user)
 
+#Создание файла
 create_file_request = CreateFileRequestDict(
     filename='image.png',
     directory='courses',
@@ -32,6 +35,7 @@ create_file_request = CreateFileRequestDict(
 create_file_response = file_client.create_file(create_file_request)
 print('Create file data', create_file_response)
 
+#Создание курса
 create_course_request = CreateCourseRequestDict(
     title='Python',
     maxScore=100,
@@ -44,7 +48,7 @@ create_course_request = CreateCourseRequestDict(
 create_course_response = course_client.create_course(create_course_request)
 print('Create course data:', create_course_response)
 
-
+#Создание задания в курсе
 create_exercises_request = CreateExerciseRequestDict(
     title='Exercise 1',
     courseId=create_course_response['course']['id'],
