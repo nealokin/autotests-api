@@ -1,5 +1,5 @@
 from clients.courses.courses_client import get_courses_client, CreateCourseRequestDict
-from clients.exercises.exercises_client import CreateExerciseRequestDict, get_exercises_client
+from clients.exercises.exercises_client import CreateExerciseRequestDict, get_exercises_client, GetExercisesQueryDict
 from clients.files.files_client import get_files_client, CreateFileRequestDict
 from clients.private_http_builder import AuthenticationUserDict
 from clients.users.public_users_client import get_public_users_client, CreateUserRequestDict
@@ -60,3 +60,10 @@ create_exercises_request = CreateExerciseRequestDict(
 )
 create_exercises_response = exercises_client.create_exercise(create_exercises_request)
 print('Create exercises data:', create_exercises_response)
+
+
+get_exercises_request = GetExercisesQueryDict(
+    courseId=create_exercises_response['exercise']['courseId']
+)
+get_exercises_response = exercises_client.get_exercises(get_exercises_request)
+print('Get data:', get_exercises_response)
